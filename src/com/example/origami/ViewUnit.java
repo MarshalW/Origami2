@@ -44,12 +44,18 @@ public class ViewUnit{
             contentView.getDrawingRect(contentRect);
         }
 
+        Bitmap contentViewBitmap =null;
+
         if (contentViewTopBitmap != null) {
             contentViewTopBitmap.recycle();
             contentViewBottomBitmap.recycle();
-        }
 
-        Bitmap contentViewBitmap = loadBitmapFromView(contentView, contentView.getWidth(), contentView.getHeight());
+            contentView.setDrawingCacheEnabled(true);
+            contentViewBitmap=Bitmap.createBitmap(contentView.getDrawingCache());
+            contentView.setDrawingCacheEnabled(false);
+        }else{
+            contentViewBitmap = loadBitmapFromView(contentView, contentView.getWidth(), contentView.getHeight());
+        }
 
         contentViewTopBitmap = Bitmap.createBitmap(contentViewBitmap, 0, 0, contentViewBitmap.getWidth(),
                 contentViewBitmap.getHeight() / 2);

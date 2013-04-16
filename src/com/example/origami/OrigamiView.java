@@ -56,6 +56,16 @@ public class OrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer
 
     Handler handler = new Handler();
 
+    private Vertex[] shadowPolygon;
+
+    private float factor;
+
+    private Animator.AnimatorListener animatorListener;
+
+    public void setAnimatorListener(Animator.AnimatorListener animatorListener) {
+        this.animatorListener = animatorListener;
+    }
+
     public long getDuration() {
         return duration;
     }
@@ -95,10 +105,10 @@ public class OrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer
         shadowMesh = new ShadowMesh(getContext());
     }
 
-    private void logVertexs(Vertex[] vertexes){
-        StringBuilder builder=new StringBuilder();
+    private void logVertexs(Vertex[] vertexes) {
+        StringBuilder builder = new StringBuilder();
 
-        for (Vertex v:vertexes){
+        for (Vertex v : vertexes) {
             builder.append(v).append("\n");
         }
 
@@ -128,8 +138,8 @@ public class OrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer
             mesh.draw(projectionMatrix, (Vertex[]) array[0], (Bitmap) array[1]);
         }
 
-        if(this.shadowPolygon!=null){
-            shadowMesh.draw(projectionMatrix,this.shadowPolygon,factor);
+        if (this.shadowPolygon != null) {
+            shadowMesh.draw(projectionMatrix, this.shadowPolygon, factor);
         }
     }
 
@@ -203,9 +213,6 @@ public class OrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer
         queueAndRender(vertexArrayList.toArray(), shadowPolygon, factor);
     }
 
-    private Vertex[] shadowPolygon;
-
-    private float factor;
 
     /**
      * 绘制数据排到队列绘制
@@ -420,11 +427,14 @@ public class OrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer
                     public void run() {
                         vertexArrayList.clear();
                         queueAndRender(vertexArrayList.toArray());
-
                     }
                 }, 10);
             }
         });
+
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
 
         animator.start();
     }

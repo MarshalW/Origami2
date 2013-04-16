@@ -1,5 +1,7 @@
 package com.example.origami;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.Log;
@@ -23,6 +25,8 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
     boolean outside;
 
     Handler handler = new Handler();
+
+    int minUpTime=200;
 
     public SwitchViewWithAnimationController(ViewGroup targetViewGroup, OrigamiView origamiView) {
         this.targetViewGroup = targetViewGroup;
@@ -75,7 +79,15 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            origamiView.snapTargetView(this.viewUnits);
+            Object[] result = isOpen();
+            boolean open = (Boolean) result[0];
+
+            if (open) {
+                ViewUnit unit = (ViewUnit) result[1];
+                unit.snapViews();
+            }
+
+            origamiView.snapTargetView(viewUnits);
             outside = false;
         }
 
@@ -89,6 +101,49 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
             }
         }
 
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            long time= (event.getEventTime()-event.getDownTime());
+            if(time<minUpTime){
+                try {
+                    Thread.sleep(minUpTime-time);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }
+
         return false;
+    }
+
+    public void addOrigamiAnimationCallback(final OrigamiAnimationCallback callback) {
+        origamiView.setAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Object[] result = isOpen();
+                boolean open = (Boolean) result[0];
+                if (open) {
+                    ViewUnit unit = (ViewUnit) result[1];
+                    callback.onOrigamiOpened(unit.contentView);
+                } else {
+                    callback.onOrigamiClosed();
+                }
+            }
+        });
+    }
+
+    private Object[] isOpen() {
+        for (ViewUnit unit : viewUnits) {
+            if (unit.contentView.getVisibility() == View.VISIBLE) {
+                return new Object[]{true, unit};
+            }
+        }
+        return new Object[]{false};
+    }
+
+    interface OrigamiAnimationCallback {
+
+        void onOrigamiOpened(View targetView);
+
+        void onOrigamiClosed();
     }
 }
