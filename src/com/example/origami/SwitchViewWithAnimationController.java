@@ -125,7 +125,7 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
                     ViewUnit unit = (ViewUnit) result[1];
                     callback.onOrigamiOpened(unit.contentView);
                 } else {
-                    callback.onOrigamiClosed();
+                    callback.onOrigamiClosed(lastChooseViewUnit.contentView);
                 }
             }
         });
@@ -144,6 +144,6 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
 
         void onOrigamiOpened(View targetView);
 
-        void onOrigamiClosed();
+        void onOrigamiClosed(View targetView);
     }
 }

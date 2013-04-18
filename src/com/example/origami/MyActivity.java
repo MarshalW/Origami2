@@ -35,12 +35,12 @@ public class MyActivity extends Activity {
         viewController.addOrigamiAnimationCallback(new SwitchViewWithAnimationController.OrigamiAnimationCallback() {
             @Override
             public void onOrigamiOpened(View targetView) {
-                Toast.makeText(MyActivity.this,"打开折纸: "+targetView,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyActivity.this, "打开折纸: " + targetView, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onOrigamiClosed() {
-                Toast.makeText(MyActivity.this,"关闭折纸。",Toast.LENGTH_SHORT).show();
+            public void onOrigamiClosed(View targetView) {
+                Toast.makeText(MyActivity.this, "关闭折纸: " + targetView, Toast.LENGTH_SHORT).show();
             }
         });
         viewController.init();

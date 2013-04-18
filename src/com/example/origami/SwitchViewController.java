@@ -16,6 +16,8 @@ import java.util.List;
 public class SwitchViewController implements View.OnClickListener {
     protected List<ViewUnit> viewUnits = new ArrayList<ViewUnit>();
 
+    protected ViewUnit lastChooseViewUnit;
+
     public void add(ViewUnit viewUnit) {
         viewUnits.add(viewUnit);
         viewUnit.titleView.setOnClickListener(this);
@@ -26,6 +28,7 @@ public class SwitchViewController implements View.OnClickListener {
         for (ViewUnit unit : viewUnits) {
             if (view == unit.titleView) {
                 unit.contentView.setVisibility(unit.contentView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+                lastChooseViewUnit=unit;
             } else {
                 unit.contentView.setVisibility(View.GONE);
             }
