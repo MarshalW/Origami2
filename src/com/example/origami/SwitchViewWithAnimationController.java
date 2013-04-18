@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
     public SwitchViewWithAnimationController(ViewGroup targetViewGroup, OrigamiView origamiView) {
         this.targetViewGroup = targetViewGroup;
         this.origamiView = origamiView;
+        this.blockCallback=true;
     }
 
     public void init() {
@@ -115,7 +115,7 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
         return false;
     }
 
-    public void addOrigamiAnimationCallback(final OrigamiAnimationCallback callback) {
+    public void addOrigamiCallback(final OrigamiCallback callback) {
         origamiView.setAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -138,12 +138,5 @@ public class SwitchViewWithAnimationController extends SwitchViewController impl
             }
         }
         return new Object[]{false};
-    }
-
-    interface OrigamiAnimationCallback {
-
-        void onOrigamiOpened(View targetView);
-
-        void onOrigamiClosed(View targetView);
     }
 }

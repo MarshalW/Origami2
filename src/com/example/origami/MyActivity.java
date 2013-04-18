@@ -19,10 +19,20 @@ public class MyActivity extends Activity {
         /**
          * 不带动画的版本
          */
-
 //        SwitchViewController viewController = new SwitchViewController();
 //        viewController.add(new ViewUnit(findViewById(R.id.title1), findViewById(R.id.content1)));
 //        viewController.add(new ViewUnit(findViewById(R.id.title2), findViewById(R.id.content2)));
+//        viewController.addOrigamiCallback(new SwitchViewController.OrigamiCallback() {
+//            @Override
+//            public void onOrigamiOpened(View targetView) {
+//                Toast.makeText(MyActivity.this, "打开折纸: " + targetView, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onOrigamiClosed(View targetView) {
+//                Toast.makeText(MyActivity.this, "关闭折纸: " + targetView, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         /**
          * 带动画的版本
@@ -32,7 +42,7 @@ public class MyActivity extends Activity {
                 (OrigamiView) findViewById(R.id.origamiView));
         viewController.add(new ViewUnit(findViewById(R.id.title1), findViewById(R.id.content1)));
         viewController.add(new ViewUnit(findViewById(R.id.title2), findViewById(R.id.content2)));
-        viewController.addOrigamiAnimationCallback(new SwitchViewWithAnimationController.OrigamiAnimationCallback() {
+        viewController.addOrigamiCallback(new SwitchViewController.OrigamiCallback() {
             @Override
             public void onOrigamiOpened(View targetView) {
                 Toast.makeText(MyActivity.this, "打开折纸: " + targetView, Toast.LENGTH_SHORT).show();

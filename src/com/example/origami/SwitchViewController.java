@@ -18,6 +18,10 @@ public class SwitchViewController implements View.OnClickListener {
 
     protected ViewUnit lastChooseViewUnit;
 
+    private OrigamiCallback callback;
+
+    protected boolean blockCallback;
+
     public void add(ViewUnit viewUnit) {
         viewUnits.add(viewUnit);
         viewUnit.titleView.setOnClickListener(this);
@@ -27,11 +31,29 @@ public class SwitchViewController implements View.OnClickListener {
     public void onClick(View view) {
         for (ViewUnit unit : viewUnits) {
             if (view == unit.titleView) {
+                if(!blockCallback){
+                    if(unit.contentView.getVisibility() == View.GONE){
+                        callback.onOrigamiOpened(unit.contentView);
+                    }else{
+                        callback.onOrigamiClosed(unit.contentView);
+                    }
+                }
                 unit.contentView.setVisibility(unit.contentView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
                 lastChooseViewUnit=unit;
             } else {
                 unit.contentView.setVisibility(View.GONE);
             }
         }
+    }
+
+    public void addOrigamiCallback(final OrigamiCallback callback) {
+        this.callback=callback;
+    }
+
+    interface OrigamiCallback {
+
+        void onOrigamiOpened(View targetView);
+
+        void onOrigamiClosed(View targetView);
     }
 }
