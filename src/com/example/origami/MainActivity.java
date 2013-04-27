@@ -3,6 +3,7 @@ package com.example.origami;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +15,7 @@ import android.widget.Button;
  * To change this template use File | Settings | File Templates.
  */
 public class MainActivity extends Activity implements View.OnClickListener {
-    private Button button1, button2;
+    private Button button1, button2,button3,button4;
 
     /**
      * Called when the activity is first created.
@@ -28,6 +29,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         button1.setOnClickListener(this);
         button2 = (Button) this.findViewById(R.id.button2);
         button2.setOnClickListener(this);
+        button3 = (Button) this.findViewById(R.id.button3);
+        button3.setOnClickListener(this);
+        button4 = (Button) this.findViewById(R.id.button4);
+        button4.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +46,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (view == button2) {
             intent.setClass(MainActivity.this, MyActivity.class);
         }
+
+        if (view == button3) {
+            intent.setClass(MainActivity.this, MyActivity3.class);
+        }
+
+        if (view == button4) {
+            intent.setClass(MainActivity.this, MyActivity4.class);
+        }
+
         startActivity(intent);
     }
 }

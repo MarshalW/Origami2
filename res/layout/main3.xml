@@ -24,27 +24,22 @@
                 android:layout_height="wrap_content"
                 android:text="关闭"
                 android:layout_weight="1"
-                ></Button>
+                />
     </LinearLayout>
     <FrameLayout
-            android:id="@+id/contentLayout"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#f2ffe1"
-            android:visibility="invisible"
-            >
+            android:layout_height="fill_parent">
         <LinearLayout
-                android:id="@+id/contentView"
-                android:orientation="vertical"
+                android:id="@+id/titleView"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:background="#ffbcbf"
+                android:visibility="invisible"
                 >
-            <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="hello"
-                    android:textColor="#000"
-                    />
+            <EditText android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:text="在公海航行的军舰"/>
         </LinearLayout>
     </FrameLayout>
+
 </LinearLayout>

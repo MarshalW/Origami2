@@ -36,7 +36,7 @@ public class ResultViewController {
     }
 
     public void close() {
-        targetView.setVisibility(View.INVISIBLE);
+        targetView.setVisibility(View.GONE);
         if (callback != null) {
             callback.closed();
         }
