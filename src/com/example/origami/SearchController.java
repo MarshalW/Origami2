@@ -16,19 +16,31 @@ public class SearchController {
 
     protected Callback callback;
 
+    protected boolean isHorizon;
+
     public SearchController(View titleView, View contentView, Callback callback) {
         this.contentView = contentView;
         this.titleView = titleView;
         this.callback = callback;
     }
 
+    public SearchController(View titleView, View contentView, Callback callback, boolean horizon) {
+        this(titleView, contentView, callback);
+        this.isHorizon = horizon;
+    }
+
     public void open() {
         titleView.setVisibility(View.VISIBLE);
 
-        if(contentView!=null){
+        if (contentView != null) {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(contentView.getWidth(),
                     contentView.getHeight());
-            layoutParams.setMargins(0, titleView.getHeight(), 0, 0);
+            if(isHorizon){
+                layoutParams.setMargins(titleView.getWidth(), 0, 0, 0);
+            }else {
+                layoutParams.setMargins(0, titleView.getHeight(), 0, 0);
+            }
+
             contentView.setLayoutParams(layoutParams);
         }
 
@@ -40,7 +52,7 @@ public class SearchController {
     public void close() {
         titleView.setVisibility(View.INVISIBLE);
 
-        if(contentView!=null){
+        if (contentView != null) {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(contentView.getWidth(),
                     contentView.getHeight());
             contentView.setLayoutParams(layoutParams);

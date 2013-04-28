@@ -17,5 +17,6 @@
         <activity android:name=".MyActivity2" />
         <activity android:name=".MyActivity3"/>
         <activity android:name=".MyActivity4"/>
+        <activity android:name=".MyActivity5"/>
     </application>
 </manifest>

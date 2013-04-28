@@ -3,6 +3,8 @@ package com.example.origami;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.opengl.GLUtils;
+import android.os.Handler;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -26,7 +28,16 @@ public class Mesh {
 
     private int[] textureId;
 
+    private Context context;
+
+    private Handler handler;
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+
     public Mesh(Context context) {
+        this.context=context;
         shader = new Shader();
         shader.setProgram(context, R.raw.demo_vertex_shader, R.raw.demo_fragment_shader);
 
@@ -44,7 +55,7 @@ public class Mesh {
         });
     }
 
-    public void draw(float[] projectionMatrix, Vertex[] vertexArray, Bitmap bitmap) {
+    public void draw(float[] projectionMatrix, Vertex[] vertexArray, final Bitmap bitmap) {
         this.setVertex(vertexArray);
         this.setTextureCood();
 
@@ -78,6 +89,7 @@ public class Mesh {
                 0, textureCoordBuffer);
         glEnableVertexAttribArray(aTextureCoord);
 
+//        Log.d("origami.recycle",">>>>bitmap is recycle? "+bitmap.isRecycled());
         glEnable(GL_TEXTURE_2D);
         GLUtils.texImage2D(GL_TEXTURE_2D, 0, bitmap, 0);
         glDisable(GL_TEXTURE_2D);

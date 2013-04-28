@@ -1,166 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-        <EditText android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="5"/>
         <Button
-                android:id="@+id/searchButton"
+                android:id="@+id/runButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="打开"
-                android:layout_weight="1"
-                ></Button>
-        <Button
-                android:id="@+id/closeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="关闭"
-                android:layout_weight="1"
+                android:text="执行"
                 />
     </LinearLayout>
     <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        <ImageView
+                android:id="@+id/contentView"
+                android:src="@drawable/a"
+                android:layout_width="720px"
+                android:layout_height="864px"
+                android:background="#0c5dff"
+                />
         <LinearLayout
                 android:id="@+id/titleView"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#ffbcbf"
-                android:visibility="invisible"
-                >
-            <EditText android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:text="在公海航行的军舰0 在公海航行的军舰舰在公海"/>
+                android:background="#fffeab"
+                android:visibility="invisible">
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰1 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰1"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海2 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海2"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰3 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰3"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海4 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海4"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰5 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰5"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海6 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海6"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰7 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰7"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海8 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海8"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰9 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰9"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海10 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海10"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰11 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰11"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海12 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海12"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰13 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰13"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海14 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海14"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海15 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海15"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海16 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海16"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰17 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰17"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海18 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海18"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰19 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰19"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海20 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海20"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰21 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰21"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海22 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海22"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="导弹护卫舰23 在公海航行的军舰舰在公海航行的军"
+                    android:text="导弹护卫舰23"
                     />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="航行在公海24 在公海航行的军舰舰在公海航行的军"
+                    android:text="航行在公海24"
                     />
+
         </LinearLayout>
     </FrameLayout>
-
 </LinearLayout>

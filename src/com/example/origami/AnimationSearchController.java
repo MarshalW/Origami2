@@ -32,7 +32,16 @@ public class AnimationSearchController extends SearchController {
 
     public AnimationSearchController(final View titleView, final View contentView, Callback callback) {
         super(titleView, contentView, callback);
-        this.origamiView = new SearchOrigamiView(titleView.getContext(), duration, new SearchOrigamiView.StartEndCallback() {
+        this.init();
+    }
+
+    public AnimationSearchController(View titleView, View contentView, Callback callback, boolean horizon) {
+        super(titleView, contentView, callback, horizon);
+        this.init();
+    }
+
+    private void init() {
+        SearchOrigamiView.StartEndCallback callback = new SearchOrigamiView.StartEndCallback() {
             @Override
             public void start() {
                 titleView.setVisibility(View.INVISIBLE);
@@ -55,9 +64,15 @@ public class AnimationSearchController extends SearchController {
                 }
                 animating = false;
             }
-        });
-        getParentViewGroup().addView(this.origamiView);
+        };
 
+        if (isHorizon) {
+            this.origamiView = new SearchHorizonOrigamiView(titleView.getContext(), duration, callback);
+        } else {
+            this.origamiView = new SearchOrigamiView(titleView.getContext(), duration, callback);
+        }
+
+        getParentViewGroup().addView(this.origamiView);
         handler = new Handler();
     }
 
@@ -99,23 +114,28 @@ public class AnimationSearchController extends SearchController {
         titleView.setDrawingCacheEnabled(true);
         Bitmap bitmap = titleView.getDrawingCache();
 
-        titleBitmaps[0] = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-                bitmap.getHeight() / 2);
-        titleBitmaps[1] = Bitmap.createBitmap(bitmap, 0, bitmap.getHeight() / 2,
-                bitmap.getWidth(), bitmap.getHeight() / 2);
+        if (isHorizon) {
+            titleBitmaps[0] = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth() / 2,
+                    bitmap.getHeight());
+            titleBitmaps[1] = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, 0,
+                    bitmap.getWidth() / 2, bitmap.getHeight());
+        } else {
+            titleBitmaps[0] = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                    bitmap.getHeight() / 2);
+            titleBitmaps[1] = Bitmap.createBitmap(bitmap, 0, bitmap.getHeight() / 2,
+                    bitmap.getWidth(), bitmap.getHeight() / 2);
+        }
 
         titleView.setDrawingCacheEnabled(false);
-
         return titleBitmaps;
     }
 
     private Bitmap getContentBitmap() {
         if (contentView == null) {
             Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
-            Bitmap bitmap = Bitmap.createBitmap(100, 100, conf); // this creates a MUTABLE bitmap
+            Bitmap bitmap = Bitmap.createBitmap(1, 1, conf); // this creates a MUTABLE bitmap
             return bitmap;
         }
-//        Log.d("origami","content view>>>>>>"+contentView);
         contentView.setDrawingCacheEnabled(true);
         Bitmap bitmap = Bitmap.createBitmap(contentView.getDrawingCache());
         contentView.setDrawingCacheEnabled(false);

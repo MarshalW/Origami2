@@ -15,7 +15,7 @@ import android.widget.Button;
  * To change this template use File | Settings | File Templates.
  */
 public class MainActivity extends Activity implements View.OnClickListener {
-    private Button button1, button2,button3,button4;
+    private Button button1, button2,button3,button4,button5;
 
     /**
      * Called when the activity is first created.
@@ -33,6 +33,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         button3.setOnClickListener(this);
         button4 = (Button) this.findViewById(R.id.button4);
         button4.setOnClickListener(this);
+        button5 = (Button) this.findViewById(R.id.button5);
+        button5.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +55,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         if (view == button4) {
             intent.setClass(MainActivity.this, MyActivity4.class);
+        }
+
+        if (view == button5) {
+            intent.setClass(MainActivity.this, MyActivity5.class);
         }
 
         startActivity(intent);

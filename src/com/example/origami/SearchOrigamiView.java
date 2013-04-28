@@ -25,9 +25,9 @@ import static android.opengl.GLES20.*;
  */
 public class SearchOrigamiView extends GLSurfaceView implements GLSurfaceView.Renderer {
 
-    private int width, height;
+    protected int width, height;
 
-    private float ratio, factor, distance = 5;
+    protected float ratio, factor, distance = 5;
 
     private long duration;
 
@@ -137,7 +137,7 @@ public class SearchOrigamiView extends GLSurfaceView implements GLSurfaceView.Re
         animator.start();
     }
 
-    private void generateAnimateFrame(float factor, Bitmap[] titleBitmaps, Bitmap content) {
+    protected void generateAnimateFrame(float factor, Bitmap[] titleBitmaps, Bitmap content) {
         Bitmap bitmap = titleBitmaps[0];
         float h = bitmap.getHeight();
         float _h = 2 * h / height;
@@ -191,7 +191,7 @@ public class SearchOrigamiView extends GLSurfaceView implements GLSurfaceView.Re
         }, bottomVertexArray, factor);
     }
 
-    private synchronized void queueAndRender(final Object[] vertexArray, final Vertex[] shadowArray, final float factor) {
+    protected void queueAndRender(final Object[] vertexArray, final Vertex[] shadowArray, final float factor) {
         queueEvent(new Runnable() {
             @Override
             public void run() {
@@ -216,7 +216,7 @@ public class SearchOrigamiView extends GLSurfaceView implements GLSurfaceView.Re
         });
     }
 
-    private Vertex[] rotateAngle(RectF rect, float angle, boolean isTop) {
+    protected Vertex[] rotateAngle(RectF rect, float angle, boolean isTop) {
         float x, y, nx, ny, nz, radian, dx, dy, topLeft, topRight, top, bottom;
 //        distance = 5;
         radian = (float) Math.PI / 180 * angle;
